@@ -1,0 +1,72 @@
+openapi: 3.0.0
+info:
+  version: 0.1
+  title: Clusters Service Application.
+  description: Clusters Service Application for the Openshift dedicated portal.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0
+  contact:
+    name: API Support
+    email: TBD@redhat.com
+paths:
+  /clusters:
+    get:
+      description: Returns lists of clusters
+      responses:
+        "200":
+          description: A list of clusters
+          content:
+            application/json:
+              schema:
+                $ref: '#/componentes/schemas/ClustersList'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+components:
+  schemas:
+    Cluster:
+      type: object
+      required:
+        - name
+        - uuid
+        - creationTimestamp
+      properties:
+        name:
+          type: string
+        uuid:
+          type: string
+        creationTimestamp:
+          type: dateTime
+    ClustersList:
+      type: object
+      required:
+        - page
+        - size
+        - total
+        - items
+      properties:
+        page:
+          type: integer
+        size:
+          type: integer
+        total:
+          type: integer
+        items:
+          type: array
+          items:
+            type:
+              $ref: '#/componentes/schemas/Cluster'
+    Error:
+      type: object
+      required:
+      - message
+      - code
+      properties:
+        message:
+          type: string
+        code:
+          type: integer
