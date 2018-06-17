@@ -33,6 +33,7 @@ func main() {
 	if err != nil {
 		panic(fmt.Sprintf("Error starting server: %v", err))
 	}
+	fmt.Println("Created server.")
 
 	notifier := NewNotifier(stopCh)
 	err = notifier.SendNotification("Hello", "myTarget")
