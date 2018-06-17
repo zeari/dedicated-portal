@@ -2,6 +2,15 @@
 
 
 [[projects]]
+  name = "github.com/container-mgmt/messaging-library"
+  packages = [
+    "pkg/client",
+    "pkg/connections/stomp"
+  ]
+  revision = "e9a374451b471dceeb3ec37a5337d6ea2df3b128"
+  version = "0.0.0"
+
+[[projects]]
   name = "github.com/go-stomp/stomp"
   packages = [
     ".",
@@ -48,6 +57,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "933b8866f167f22a129b291f3da36381d73abc77d1d842ce4b458d3f93f48496"
+  inputs-digest = "3097b129186ec5f12cd392d4f5abcc7197b9866dfd2df0d4637e35218cfc3c23"
   solver-name = "gps-cdcl"
   solver-version = 1
