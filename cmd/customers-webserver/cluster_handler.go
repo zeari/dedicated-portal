@@ -27,6 +27,7 @@ import (
 // ClusterHandler returns an index of all clusters in the system
 func ClusterHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("access-control-allow-origin", "*")
 	page, err := getQueryParamInt("page", r)
 	if err != nil {
 		writeErrorJSON(w, http.StatusBadRequest, fmt.Sprintf("Bad query param: page, %v", err))
