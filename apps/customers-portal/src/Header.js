@@ -16,8 +16,13 @@ import { Masthead, MenuItem } from 'patternfly-react'
 import "patternfly/dist/css/patternfly.css";
 import "patternfly/dist/css/patternfly-additions.css";
 import logo from "./logo.svg"
+import { keycloak } from './keycloak-config';
 
 class Header extends Component {
+  logout() {
+    keycloak.logout()
+  }
+
   render() {
     return (
         <Masthead
@@ -40,7 +45,7 @@ class Header extends Component {
               }
             >
               <MenuItem eventKey="1">User Preferences</MenuItem>
-              <MenuItem eventKey="2">Logout</MenuItem>
+              <MenuItem eventKey="2" onSelect={this.logout}>Logout</MenuItem>
             </Masthead.Dropdown>
           </Masthead.Collapse>
         </Masthead>

@@ -9,6 +9,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "classnames": "^2.2.6",
+    "keycloak-js": "^4.1.0",
     "patternfly-react": "^2.10.1",
     "prop-types": "^15.6.1",
     "react": "^16.3.2",
