@@ -18,17 +18,25 @@ import App from './App';
 import { Provider } from 'react-redux'
 import registerServiceWorker from './registerServiceWorker';
 import store from './store';
-import { keycloak } from './keycloak-config';
+import * as fromUsers from './ducks/users';
+import * as fromItems from './ducks/items';
 
+
+import keycloakConfig from './keycloak-config';
+import Keycloak from 'keycloak-js';
+
+export const keycloak = Keycloak(keycloakConfig)
 keycloak.init({ onLoad: 'check-sso', checkLoginIframeInterval: 1 }).success(authenticated => {
   if (keycloak.authenticated) {
     sessionStorage.setItem('kctoken', keycloak.token);
-    //Updating some value in store to re-render the component
-    //store.dispatch(setUser('Welcome!'));
-    
-    keycloak.loadUserProfile().success(result => {
-        console.log(result)
-    }).error(err => {console.log('cant get user profile')})
+
+    keycloak.loadUserProfile()
+      .success(result => {
+        store.dispatch(fromUsers.userInfoResponse(result))
+      })
+      .error(err => {
+        console.log(err) // should probably redirect to an error page
+      })
 
     setInterval(() => {
       keycloak.updateToken(10)

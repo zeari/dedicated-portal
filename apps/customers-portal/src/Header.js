@@ -16,11 +16,13 @@ import { Masthead, MenuItem } from 'patternfly-react'
 import "patternfly/dist/css/patternfly.css";
 import "patternfly/dist/css/patternfly-additions.css";
 import logo from "./logo.svg"
-import { keycloak } from './keycloak-config';
+import { keycloakConfig } from './keycloak-config';
+import Keycloak from 'keycloak-js';
+import PropTypes from 'prop-types'
 
 class Header extends Component {
   logout() {
-    keycloak.logout()
+    Keycloak(keycloakConfig).logout()
   }
 
   render() {
@@ -40,7 +42,7 @@ class Header extends Component {
               title={
                 <span>
                   <span title="Help" className="pficon pficon-user" />
-                  <span className="dropdown-title">User name</span>
+                  <span className="dropdown-title">{this.props.username}</span>
                 </span>
               }
             >
@@ -51,6 +53,10 @@ class Header extends Component {
         </Masthead>
     );
   }
+}
+
+Header.propTypes = {
+  username: PropTypes.string
 }
 
 export { Header };

@@ -4,4 +4,4 @@
 /vendor/
 build/
 node_modules/
-apps/customers-portal/src/keycloak-config.js
+apps/customers-portal/src/keycloak-config.json
